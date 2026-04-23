@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentin Cesano – Data Analyst & BI Developer</title>
+  <style>
+    :root {
+      --green: #57CC99;
+      --pink: #E06C9F;
+      --navy: #1E3A5F;
+      --light: #EAEAEA;
+      --dark: #222831;
+      --transition: 0.3s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* ── CANVAS TECH BG ── */
+    #tech-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(34,40,49,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(87,204,153,0.15);
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: 3px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 3px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(87,204,153,0.25);
+      border-radius: 20px;
+      padding: 4px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: var(--light);
+      padding: 4px 14px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      opacity: 0.5;
+    }
+
+    .lang-btn.active {
+      background: var(--green);
+      color: var(--dark);
+      opacity: 1;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(87,204,153,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(224,108,159,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      width: 100%;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(87,204,153,0.1);
+      border: 1px solid rgba(87,204,153,0.3);
+      color: var(--green);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 0.6rem;
+      color: var(--light);
+    }
+
+    .hero-name span { color: var(--green); }
+
+    .hero-title {
+      font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+      color: var(--pink);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(234,234,234,0.72);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: var(--dark);
+      padding: 0.78rem 1.7rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .btn-primary:hover {
+      background: #48c48e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(87,204,153,0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--light);
+      padding: 0.78rem 1.7rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      border: 1.5px solid rgba(234,234,234,0.25);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--green);
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+
+
+    /* ── PHOTO ── */
+    .hero-photo { flex-shrink: 0; }
+
+    .photo-ring {
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--green), var(--pink));
+      box-shadow: 0 0 60px rgba(87,204,153,0.18), 0 0 100px rgba(224,108,159,0.1);
+    }
+
+    .photo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .photo-initials {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy) 0%, #243f6a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.8rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: 3px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5.5rem 2rem; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--light);
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
+
+    .section-title span { color: var(--green); }
+
+    /* ── ABOUT ── */
+    .about { background: var(--navy); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: rgba(234,234,234,0.78);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(87,204,153,0.18);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      border-color: var(--green);
+      background: rgba(87,204,153,0.07);
+      transform: translateY(-3px);
+    }
+
+    .stat-number {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--green);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(234,234,234,0.55);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 1.6rem;
+      border: 1px solid rgba(87,204,153,0.1);
+      transition: var(--transition);
+    }
+
+    .skill-category:hover {
+      border-color: rgba(87,204,153,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 14px 45px rgba(0,0,0,0.35);
+    }
+
+    .skill-category h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: rgba(87,204,153,0.09);
+      border: 1px solid rgba(87,204,153,0.22);
+      color: var(--green);
+      padding: 4px 13px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* ── EXPERIENCE ── */
+    .experience { background: var(--navy); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--green), var(--pink));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.8rem;
+      padding-left: 1.8rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.6rem;
+      top: 9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2.5px solid var(--navy);
+      box-shadow: 0 0 0 3px rgba(87,204,153,0.25);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-role {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--light);
+    }
+
+    .timeline-company {
+      font-size: 0.88rem;
+      color: var(--green);
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      color: rgba(234,234,234,0.45);
+      background: rgba(255,255,255,0.05);
+      padding: 3px 11px;
+      border-radius: 12px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: rgba(234,234,234,0.62);
+      line-height: 1.65;
+      margin-top: 0.5rem;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-card {
+      background: var(--navy);
+      border: 1px solid rgba(224,108,159,0.18);
+      border-radius: 14px;
+      padding: 1.3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: var(--transition);
+    }
+
+    .cert-card:hover {
+      border-color: var(--pink);
+      box-shadow: 0 8px 30px rgba(224,108,159,0.1);
+      transform: translateY(-3px);
+    }
+
+    .cert-name {
+      font-weight: 700;
+      font-size: 0.94rem;
+      color: var(--light);
+    }
+
+    .cert-issuer {
+      font-size: 0.82rem;
+      color: var(--pink);
+      font-weight: 500;
+    }
+
+    .cert-date {
+      font-size: 0.77rem;
+      color: rgba(234,234,234,0.4);
+    }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { background: var(--dark); }
+
+    .portfolio-placeholder {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: rgba(255,255,255,0.02);
+      border: 2px dashed rgba(87,204,153,0.18);
+      border-radius: 20px;
+    }
+
+    .portfolio-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .portfolio-placeholder h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--light);
+      margin-bottom: 0.6rem;
+    }
+
+    .portfolio-placeholder p {
+      color: rgba(234,234,234,0.45);
+      font-size: 0.95rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--navy);
+      text-align: center;
+    }
+
+    .contact .container { max-width: 700px; }
+
+    .contact-desc {
+      color: rgba(234,234,234,0.7);
+      font-size: 1.05rem;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: rgba(234,234,234,0.28);
+      font-size: 0.8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2.5rem;
+      }
+
+      .hero-ctas { justify-content: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+
+      .photo-ring { width: 210px; height: 210px; }
+
+      .about-grid { grid-template-columns: 1fr; }
+
+      section { padding: 3.5rem 1.25rem; }
+
+      nav { padding: 0.75rem 1.25rem; }
+
+      .timeline { padding-left: 1.5rem; }
+      .timeline-item { padding-left: 1.2rem; }
+      .timeline-item::before { left: -2.1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 5rem 1.25rem 3rem; }
+      .hero-name { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">VC</div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('es')" id="btn-es">ES</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <canvas id="tech-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="hero-badge"
+        data-es="Disponible para proyectos freelance"
+        data-en="Available for freelance projects">
+        Disponible para proyectos freelance
+      </span>
+      <h1 class="hero-name">Valentin<br><span>Cesano</span></h1>
+      <p class="hero-title"
+        data-es="Ingeniero Industrial &nbsp;·&nbsp; Data Analyst &nbsp;·&nbsp; BI Developer"
+        data-en="Industrial Engineer &nbsp;·&nbsp; Data Analyst &nbsp;·&nbsp; BI Developer">
+        Ingeniero Industrial &nbsp;·&nbsp; Data Analyst &nbsp;·&nbsp; BI Developer
+      </p>
+      <p class="hero-desc"
+        data-es="Transformo datos en decisiones estratégicas. Diseño dashboards, automatizo reportes y construyo soluciones BI que ayudan a pymes y negocios a crecer con información real."
+        data-en="I turn data into strategic decisions. I design dashboards, automate reports, and build BI solutions that help SMBs and businesses grow with real insights.">
+        Transformo datos en decisiones estratégicas. Diseño dashboards, automatizo reportes y construyo soluciones BI que ayudan a pymes y negocios a crecer con información real.
+      </p>
+      <div class="hero-ctas">
+        <a href="mailto:valentincesano@gmail.com" class="btn-primary">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          Email
+        </a>
+        <a href="https://www.linkedin.com/in/valentincesano" target="_blank" rel="noopener" class="btn-secondary">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <div class="photo-ring">
+        <div class="photo-inner">
+          <!--
+            FOTO: colocá tu foto en la misma carpeta que este archivo con el nombre "foto.jpg"
+            Si no la encontrás, se muestran tus iniciales automáticamente.
+          -->
+          <img
+            src="foto.jpg"
+            alt="Valentin Cesano"
+            onerror="this.style.display='none'; document.getElementById('initials').style.display='flex';">
+          <div class="photo-initials" id="initials" style="display:none;">VC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="container">
+    <span class="section-label" data-es="Sobre mí" data-en="About me">Sobre mí</span>
+    <h2 class="section-title" data-es="Datos que <span>generan valor</span>" data-en="Data that <span>drives value</span>">Datos que <span>generan valor</span></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p data-es="Soy Ingeniero Industrial egresado de la Universidad Nacional de Tucumán, con sólida experiencia en análisis de datos, automatización de procesos y desarrollo de soluciones Business Intelligence."
+           data-en="I'm an Industrial Engineer from the National University of Tucumán, with solid experience in data analysis, process automation, and Business Intelligence solution development.">
+          Soy Ingeniero Industrial egresado de la Universidad Nacional de Tucumán, con sólida experiencia en análisis de datos, automatización de procesos y desarrollo de soluciones Business Intelligence.
+        </p>
+        <p data-es="Me especializo en ayudar a pymes y pequeños negocios a dar el primer paso hacia el mundo de los datos: desde construir su primer dashboard hasta implementar flujos automáticos que eliminan el trabajo manual y liberan tiempo para lo que importa."
+           data-en="I specialize in helping SMBs and small businesses take their first step into the data world: from building their first dashboard to automating repetitive workflows, freeing up time for what truly matters.">
+          Me especializo en ayudar a pymes y pequeños negocios a dar el primer paso hacia el mundo de los datos: desde construir su primer dashboard hasta implementar flujos automáticos que eliminan el trabajo manual y liberan tiempo para lo que importa.
+        </p>
+        <p data-es="Domino Power BI, Excel avanzado, SQL, Power Automate y Power Apps, y cuento con certificaciones de Microsoft, Databricks y Google."
+           data-en="I master Power BI, advanced Excel, SQL, Power Automate, and Power Apps, and hold certifications from Microsoft, Databricks, and Google.">
+          Domino Power BI, Excel avanzado, SQL, Power Automate y Power Apps, y cuento con certificaciones de Microsoft, Databricks y Google.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="stat-number">3+</span>
+          <p class="stat-label" data-es="años de experiencia" data-en="years of experience">años de experiencia</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">20+</span>
+          <p class="stat-label" data-es="reportes migrados a Power BI" data-en="reports migrated to Power BI">reportes migrados a Power BI</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">4</span>
+          <p class="stat-label" data-es="certificaciones oficiales" data-en="official certifications">certificaciones oficiales</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">C1</span>
+          <p class="stat-label" data-es="inglés certificado" data-en="certified English level">inglés certificado</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section class="skills">
+  <div class="container">
+    <span class="section-label" data-es="Herramientas & tecnologías" data-en="Tools & technologies">Herramientas & tecnologías</span>
+    <h2 class="section-title" data-es="Mi <span>stack</span> de trabajo" data-en="My work <span>stack</span>">Mi <span>stack</span> de trabajo</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3 data-es="Visualización BI" data-en="BI Visualization">Visualización BI</h3>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Looker Studio</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 data-es="Datos & Bases de datos" data-en="Data & Databases">Datos & Bases de datos</h3>
+        <div class="skill-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Databricks</span>
+          <span class="tag">Azure Data Factory</span>
+          <span class="tag">Dataflows</span>
+          <span class="tag">ETL / Datamarts</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 data-es="Automatización & Low-Code" data-en="Automation & Low-Code">Automatización & Low-Code</h3>
+        <div class="skill-tags">
+          <span class="tag">Power Automate</span>
+          <span class="tag">Power Apps</span>
+          <span class="tag">Macros VBA</span>
+          <span class="tag">Excel Avanzado</span>
+          <span class="tag">Power Pivot</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section class="experience">
+  <div class="container">
+    <span class="section-label" data-es="Trayectoria" data-en="Career">Trayectoria</span>
+    <h2 class="section-title" data-es="Experiencia <span>laboral</span>" data-en="Work <span>experience</span>">Experiencia <span>laboral</span></h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-es="Visualizador de Datos" data-en="Data Visualizer">Visualizador de Datos</div>
+            <div class="timeline-company">Lovelytics LATAM</div>
+          </div>
+          <span class="timeline-date" data-es="Jul 2025 – Actualidad" data-en="Jul 2025 – Present">Jul 2025 – Actualidad</span>
+        </div>
+        <p class="timeline-desc"
+          data-es="Migración escalable de más de 20 reportes complejos desde Business Objects a Power BI para Xcel Energy (EE.UU.), trabajando con un equipo internacional de +30 profesionales distribuidos en EE.UU., Canadá y LATAM."
+          data-en="Scalable migration of 20+ complex reports from Business Objects to Power BI for Xcel Energy (U.S.), collaborating with an international team of 30+ professionals across the U.S., Canada, and LATAM.">
+          Migración escalable de más de 20 reportes complejos desde Business Objects a Power BI para Xcel Energy (EE.UU.), trabajando con un equipo internacional de +30 profesionales distribuidos en EE.UU., Canadá y LATAM.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-es="Desarrollador BI Freelance" data-en="Freelance BI Developer">Desarrollador BI Freelance</div>
+            <div class="timeline-company">ExcelLatinoamerica</div>
+          </div>
+          <span class="timeline-date" data-es="Feb 2024 – Actualidad" data-en="Feb 2024 – Present">Feb 2024 – Actualidad</span>
+        </div>
+        <p class="timeline-desc"
+          data-es="Diseño y dictado de cursos de Excel Avanzado y Power BI para cientos de usuarios. Capacitaciones presenciales y remotas a empresas para promover una cultura de decisiones basadas en datos."
+          data-en="Design and delivery of Advanced Excel and Power BI courses for hundreds of users. On-site and remote corporate training to foster data-driven decision-making cultures.">
+          Diseño y dictado de cursos de Excel Avanzado y Power BI para cientos de usuarios. Capacitaciones presenciales y remotas a empresas para promover una cultura de decisiones basadas en datos.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-es="Analista de Datos SSR" data-en="Data Analyst SSR">Analista de Datos SSR</div>
+            <div class="timeline-company">Zentenio</div>
+          </div>
+          <span class="timeline-date" data-es="Jul 2023 – Jul 2025" data-en="Jul 2023 – Jul 2025">Jul 2023 – Jul 2025</span>
+        </div>
+        <p class="timeline-desc"
+          data-es="Diseño e implementación de tableros de gestión en Power BI para múltiples clientes (Finanzas, RRHH, Comercial, Operaciones). Liderazgo del equipo de desarrollo y conducción de workshops de consultoría."
+          data-en="Design and implementation of Power BI management dashboards for multiple clients (Finance, HR, Sales, Operations). Development team leadership and consulting workshop facilitation.">
+          Diseño e implementación de tableros de gestión en Power BI para múltiples clientes (Finanzas, RRHH, Comercial, Operaciones). Liderazgo del equipo de desarrollo y conducción de workshops de consultoría.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role" data-es="Analista de Calidad" data-en="Quality Analyst">Analista de Calidad</div>
+            <div class="timeline-company">Cargo Servicios Industriales S.A.</div>
+          </div>
+          <span class="timeline-date" data-es="Jul 2022 – Jul 2023" data-en="Jul 2022 – Jul 2023">Jul 2022 – Jul 2023</span>
+        </div>
+        <p class="timeline-desc"
+          data-es="Desarrollo de dashboards en Excel y flujos automatizados con VBA y Power Query. Gestión documental con metodologías Lean (5S) y seguimiento de auditorías ISO 9001/14001."
+          data-en="Excel dashboard development and automated workflows using VBA and Power Query. Document management with Lean methodologies (5S) and ISO 9001/14001 audit compliance.">
+          Desarrollo de dashboards en Excel y flujos automatizados con VBA y Power Query. Gestión documental con metodologías Lean (5S) y seguimiento de auditorías ISO 9001/14001.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section class="certifications">
+  <div class="container">
+    <span class="section-label" data-es="Formación" data-en="Education">Formación</span>
+    <h2 class="section-title" data-es="Títulos & <span>certificaciones</span>" data-en="Degrees & <span>certifications</span>">Títulos & <span>certificaciones</span></h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <span class="cert-name" data-es="Ingeniero Industrial" data-en="Industrial Engineer">Ingeniero Industrial</span>
+        <span class="cert-issuer">Universidad Nacional de Tucumán</span>
+        <span class="cert-date" data-es="Promedio 8,48 · Feb 2023" data-en="GPA 8.48/10 · Feb 2023">Promedio 8,48 · Feb 2023</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-name">Data Analyst Associate</span>
+        <span class="cert-issuer">Databricks</span>
+        <span class="cert-date">Nov 2025</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-name">Power BI Data Analyst Associate</span>
+        <span class="cert-issuer">Microsoft</span>
+        <span class="cert-date">Jun 2025</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-name" data-es="Análisis de Datos en Google" data-en="Google Data Analytics">Análisis de Datos en Google</span>
+        <span class="cert-issuer">Coursera / Google</span>
+        <span class="cert-date">Mar 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-name">Data Analytics</span>
+        <span class="cert-issuer">Coderhouse</span>
+        <span class="cert-date" data-es="Promedio 9,33 · Jul 2023" data-en="GPA 9.33/10 · Jul 2023">Promedio 9,33 · Jul 2023</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-name" data-es="Inglés C1 – Avanzado" data-en="English C1 – Advanced">Inglés C1 – Avanzado</span>
+        <span class="cert-issuer" data-es="Nivel certificado" data-en="Certified level">Nivel certificado</span>
+        <span class="cert-date" data-es="Italiano A2 certificado" data-en="Italian A2 certified">Italiano A2 certificado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section class="portfolio">
+  <div class="container">
+    <span class="section-label">Portfolio</span>
+    <h2 class="section-title" data-es="Proyectos <span>destacados</span>" data-en="Featured <span>projects</span>">Proyectos <span>destacados</span></h2>
+    <div class="portfolio-placeholder">
+      <span class="portfolio-icon">📊</span>
+      <h3 data-es="Próximamente" data-en="Coming soon">Próximamente</h3>
+      <p data-es="Estoy preparando casos de estudio y proyectos reales para mostrar aquí. ¡Volvé pronto!" data-en="I'm preparing real case studies and projects to showcase here. Check back soon!">
+        Estoy preparando casos de estudio y proyectos reales para mostrar aquí. ¡Volvé pronto!
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact">
+  <div class="container">
+    <span class="section-label" data-es="Contacto" data-en="Contact">Contacto</span>
+    <h2 class="section-title" data-es="¿Hablamos de tu <span>proyecto</span>?" data-en="Let's talk about your <span>project</span>?">¿Hablamos de tu <span>proyecto</span>?</h2>
+    <p class="contact-desc"
+      data-es="¿Querés llevar los datos de tu negocio al siguiente nivel? Escribime o conectá conmigo en LinkedIn y te cuento cómo puedo ayudarte."
+      data-en="Want to take your business data to the next level? Reach out by email or connect on LinkedIn and I'll show you how I can help.">
+      ¿Querés llevar los datos de tu negocio al siguiente nivel? Escribime o conectá conmigo en LinkedIn y te cuento cómo puedo ayudarte.
+    </p>
+    <div class="contact-links">
+      <button class="btn-primary" onclick="copyEmail()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span data-es="Copiar email" data-en="Copy email">Copiar email</span>
+      </button>
+      <a href="https://www.linkedin.com/in/valentincesano" target="_blank" rel="noopener" class="btn-secondary">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Valentin Cesano &nbsp;·&nbsp; valentincesano@gmail.com &nbsp;·&nbsp; Tucumán, Argentina</p>
+</footer>
+
+<script>
+  /* ── Language toggle ── */
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-es]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (!text) return;
+      if (text.includes('<span>') || text.includes('&nbsp;')) {
+        el.innerHTML = text;
+      } else {
+        el.textContent = text;
+      }
+    });
+  }
+
+  /* ── Tech / AI / Semiconductor canvas background ── */
+  (function () {
+    const canvas = document.getElementById('tech-canvas');
+    const ctx    = canvas.getContext('2d');
+
+    const GREEN  = '87,204,153';
+    const PINK   = '224,108,159';
+    const BLUE   = '100,160,255';
+
+    let W, H, nodes, particles, animId;
+
+    /* Circuit node */
+    function Node(x, y) {
+      this.x  = x;
+      this.y  = y;
+      this.r  = Math.random() * 2.5 + 1;
+      this.color = [GREEN, PINK, BLUE][Math.floor(Math.random() * 3)];
+      this.pulse = Math.random() * Math.PI * 2;
+      this.speed = 0.012 + Math.random() * 0.018;
+      this.connections = [];
+    }
+
+    /* Floating data particle */
+    function Particle() { this.reset(); }
+    Particle.prototype.reset = function () {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.35;
+      this.vy = (Math.random() - 0.5) * 0.35;
+      this.life   = 0;
+      this.maxLife = 200 + Math.random() * 300;
+      this.size   = Math.random() * 1.8 + 0.4;
+      this.color  = [GREEN, PINK, BLUE][Math.floor(Math.random() * 3)];
+    };
+
+    function init() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+
+      const count = Math.floor((W * H) / 22000);
+
+      /* Build grid-like nodes (semiconductor layout feel) */
+      nodes = [];
+      const cols = Math.ceil(Math.sqrt(count * W / H));
+      const rows = Math.ceil(count / cols);
+      const gx   = W / cols;
+      const gy   = H / rows;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const jitter = 0.35;
+          nodes.push(new Node(
+            (c + 0.5 + (Math.random() - 0.5) * jitter) * gx,
+            (r + 0.5 + (Math.random() - 0.5) * jitter) * gy
+          ));
+        }
+      }
+
+      /* Connect nearest neighbours (axis-aligned preference → circuit look) */
+      const maxDist = Math.max(gx, gy) * 2.2;
+      nodes.forEach(a => {
+        a.connections = nodes
+          .filter(b => b !== a)
+          .map(b => ({ node: b, d: Math.hypot(a.x - b.x, a.y - b.y) }))
+          .filter(e => e.d < maxDist)
+          .sort((a, b) => a.d - b.d)
+          .slice(0, 3)
+          .map(e => e.node);
+      });
+
+      /* Particles */
+      const pCount = Math.floor((W * H) / 8000);
+      particles = Array.from({ length: pCount }, () => new Particle());
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      /* ── Circuit lines ── */
+      const drawn = new Set();
+      nodes.forEach(a => {
+        a.connections.forEach(b => {
+          const key = [a, b].sort((x, y) => x.x - y.x).map(n => `${n.x},${n.y}`).join('|');
+          if (drawn.has(key)) return;
+          drawn.add(key);
+
+          /* Draw axis-aligned L-shaped trace */
+          const alpha = 0.09 + 0.06 * Math.sin(a.pulse);
+          ctx.strokeStyle = `rgba(${a.color},${alpha})`;
+          ctx.lineWidth   = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          /* Alternate corner direction for variety */
+          if ((a.x + b.x) % 2 < 1) {
+            ctx.lineTo(b.x, a.y);
+            ctx.lineTo(b.x, b.y);
+          } else {
+            ctx.lineTo(a.x, b.y);
+            ctx.lineTo(b.x, b.y);
+          }
+          ctx.stroke();
+        });
+      });
+
+      /* ── Nodes (junction pads) ── */
+      nodes.forEach(n => {
+        n.pulse += n.speed;
+        const glow = 0.25 + 0.2 * Math.sin(n.pulse);
+        const r    = n.r * (0.9 + 0.2 * Math.sin(n.pulse));
+
+        /* outer glow ring */
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${n.color},${glow * 0.15})`;
+        ctx.fill();
+
+        /* solid pad */
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${n.color},${glow + 0.3})`;
+        ctx.fill();
+      });
+
+      /* ── Floating data particles ── */
+      particles.forEach(p => {
+        p.life++;
+        if (p.life > p.maxLife) p.reset();
+        p.x += p.vx;
+        p.y += p.vy;
+        const t = p.life / p.maxLife;
+        const alpha = t < 0.15 ? t / 0.15 : t > 0.85 ? (1 - t) / 0.15 : 1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color},${alpha * 0.55})`;
+        ctx.fill();
+      });
+
+      /* ── Subtle AI "brain wave" sine line ── */
+      ctx.beginPath();
+      ctx.strokeStyle = `rgba(${GREEN},0.07)`;
+      ctx.lineWidth = 1;
+      const t = Date.now() / 2000;
+      for (let x = 0; x <= W; x += 3) {
+        const y = H * 0.72 +
+          Math.sin(x / W * Math.PI * 4 + t) * 18 +
+          Math.sin(x / W * Math.PI * 9 + t * 1.3) * 9;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    function start() {
+      cancelAnimationFrame(animId);
+      init();
+      draw();
+    }
+
+    window.addEventListener('resize', start);
+    start();
+  })();
+</script>
+</body>
+</html>
